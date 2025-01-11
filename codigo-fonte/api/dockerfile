@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+RUN mkdir -p /usr/src/a3
+WORKDIR /usr/src/a3
+
+RUN apk update && apk upgrade
+
+RUN rm -rf ./node_modules
+RUN rm -rf package-lock.json
+
+COPY ./package.json .
+
+RUN npm install
+
+COPY . .
+
+CMD ["node", "index.js"]
+

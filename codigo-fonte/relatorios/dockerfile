@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+WORKDIR /usr/src/relatorios
+
+RUN apk update && apk upgrade
+
+RUN rm -rf ./node_modules
+RUN rm -rf package-lock.json
+
+COPY ./package.json ./
+
+RUN npm install
+
+COPY . .
+
+CMD ["node", "relatorio.js"]
