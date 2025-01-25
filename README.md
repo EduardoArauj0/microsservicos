@@ -18,11 +18,9 @@
 - MySQL
 - Docker
 
-<!--
+
 <h2 id="started">🚀 Começando</h2>
 
-Aqui você pode descrever como rodar seu projeto localmente.
--->
 
 <h3>Pré-requisitos</h3>
 
@@ -51,7 +49,7 @@ DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=yourdatabasename
 ```
-<!--
+
 <h3>Iniciando o projeto</h3>
 Para rodar o projeto, siga as instruções:
 
@@ -59,8 +57,9 @@ Para rodar o projeto, siga as instruções:
 cd microsservicos
 npm install
 npm start
+docker-compose up --build
 ```
--->
+
 
 <h2 id="routes">📍 Endpoints da API</h2>
 
@@ -82,6 +81,11 @@ npm start
 | <kbd>POST /vendedores</kbd>	| Adiciona um novo vendedor.
 | <kbd>PUT /vendedores/:id</kbd>	| Atualiza os dados de um vendedor pelo ID.
 | <kbd>DELETE /vendedores/:id</kbd>	| Remove um vendedor pelo ID.
+| <kbd>GET /relatorio/produtos-mais-vendidos</kbd>	| Retorna um relatório com os produtos mais vendidos.
+| <kbd>GET /relatorio/produtos-por-cliente</kbd>	| Retorna um relatório dos produtos comprados por cada cliente.
+| <kbd>GET /relatorio/consumo-medio</kbd>	| Retorna um relatório sobre o consumo médio de produtos.
+| <kbd>GET /relatorio/baixo-estoque</kbd>	| Retorna um relatório com os produtos que possuem baixo estoque.
+
 <h3 id="get-client-detail">GET /clientes</h3>
 
 **RESPOSTA**
