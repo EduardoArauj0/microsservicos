@@ -18,9 +18,7 @@
 - MySQL
 - Docker
 
-
 <h2 id="started">🚀 Começando</h2>
-
 
 <h3>Pré-requisitos</h3>
 
@@ -41,13 +39,22 @@ git clone https://github.com/EduardoArauj0/microsservicos
 
 <h3>Configurando as variáveis .env</h3>
 
-Crie seu arquivo .env com as configurações necessárias, como informações de conexão com o banco de dados, seguindo o modelo do arquivo .env.example:
+Crie seu arquivo .env com as configurações necessárias, como informações de conexão com o banco de dados, seguindo o modelo do arquivo .env:
 
 ```yaml
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=yourdatabasename
+APP_DEBUG=true
+
+NODE_LOCAL_PORT=3000
+SALES_REPORTS_PORT=4000
+
+MYSQL_ROOT_PASSWORD=""
+MYSQL_HOST=mysqldb
+MYSQL_LOCAL_PORT=3307
+MYSQL_DOCKER_PORT=3306
+MYSQL_DATABASE=api
+MYSQL_PASSWORD=""
+
+RUN_SEED=true
 ```
 
 <h3>Iniciando o projeto</h3>
@@ -60,35 +67,35 @@ npm start
 docker-compose up --build
 ```
 
-
 <h2 id="routes">📍 Endpoints da API</h2>
 
-| rotas               | descrição                                          
-|----------------------|-----------------------------------------------------
-| <kbd>GET /clientes</kbd> |	Lista todos os clientes.
-| <kbd>POST /clientes</kbd>	| Cria um novo cliente.
-| <kbd>PUT /clientes/:id</kbd> | 	Atualiza os dados de um cliente pelo ID.
-| <kbd>DELETE /clientes/:id</kbd> |	Remove um cliente pelo ID.
-| <kbd>GET /estoque</kbd>	| Lista todos os produtos em estoque.
-| <kbd>POST /estoque</kbd>	| Adiciona um novo produto ao estoque.
-| <kbd>PUT /estoque/:id</kbd>	| Atualiza um produto pelo ID.
-| <kbd>DELETE /estoque/:id</kbd>	| Remove um produto pelo ID.
-| <kbd>GET /pedidos</kbd>	| Lista todos os pedidos.
-| <kbd>POST /pedidos</kbd>	| Cria um novo pedido.
-| <kbd>PUT /pedidos/:id</kbd>	| Atualiza um pedido pelo ID.
-| <kbd>DELETE /pedidos/:id</kbd>	| Remove um pedido pelo ID.
-| <kbd>GET /vendedores</kbd>	| Lista todos os vendedores.
-| <kbd>POST /vendedores</kbd>	| Adiciona um novo vendedor.
-| <kbd>PUT /vendedores/:id</kbd>	| Atualiza os dados de um vendedor pelo ID.
-| <kbd>DELETE /vendedores/:id</kbd>	| Remove um vendedor pelo ID.
-| <kbd>GET /relatorio/produtos-mais-vendidos</kbd>	| Retorna um relatório com os produtos mais vendidos.
-| <kbd>GET /relatorio/produtos-por-cliente</kbd>	| Retorna um relatório dos produtos comprados por cada cliente.
-| <kbd>GET /relatorio/consumo-medio</kbd>	| Retorna um relatório sobre o consumo médio de produtos.
-| <kbd>GET /relatorio/baixo-estoque</kbd>	| Retorna um relatório com os produtos que possuem baixo estoque.
+| rotas                                            | descrição                                                       |
+| ------------------------------------------------ | --------------------------------------------------------------- |
+| <kbd>GET /clientes</kbd>                         | Lista todos os clientes.                                        |
+| <kbd>POST /clientes</kbd>                        | Cria um novo cliente.                                           |
+| <kbd>PUT /clientes/:id</kbd>                     | Atualiza os dados de um cliente pelo ID.                        |
+| <kbd>DELETE /clientes/:id</kbd>                  | Remove um cliente pelo ID.                                      |
+| <kbd>GET /estoque</kbd>                          | Lista todos os produtos em estoque.                             |
+| <kbd>POST /estoque</kbd>                         | Adiciona um novo produto ao estoque.                            |
+| <kbd>PUT /estoque/:id</kbd>                      | Atualiza um produto pelo ID.                                    |
+| <kbd>DELETE /estoque/:id</kbd>                   | Remove um produto pelo ID.                                      |
+| <kbd>GET /pedidos</kbd>                          | Lista todos os pedidos.                                         |
+| <kbd>POST /pedidos</kbd>                         | Cria um novo pedido.                                            |
+| <kbd>PUT /pedidos/:id</kbd>                      | Atualiza um pedido pelo ID.                                     |
+| <kbd>DELETE /pedidos/:id</kbd>                   | Remove um pedido pelo ID.                                       |
+| <kbd>GET /vendedores</kbd>                       | Lista todos os vendedores.                                      |
+| <kbd>POST /vendedores</kbd>                      | Adiciona um novo vendedor.                                      |
+| <kbd>PUT /vendedores/:id</kbd>                   | Atualiza os dados de um vendedor pelo ID.                       |
+| <kbd>DELETE /vendedores/:id</kbd>                | Remove um vendedor pelo ID.                                     |
+| <kbd>GET /relatorio/produtos-mais-vendidos</kbd> | Retorna um relatório com os produtos mais vendidos.             |
+| <kbd>GET /relatorio/produtos-por-cliente</kbd>   | Retorna um relatório dos produtos comprados por cada cliente.   |
+| <kbd>GET /relatorio/consumo-medio</kbd>          | Retorna um relatório sobre o consumo médio de produtos.         |
+| <kbd>GET /relatorio/baixo-estoque</kbd>          | Retorna um relatório com os produtos que possuem baixo estoque. |
 
 <h3 id="get-client-detail">GET /clientes</h3>
 
 **RESPOSTA**
+
 ```json
 [
   {
@@ -105,9 +112,11 @@ docker-compose up --build
   }
 ]
 ```
+
 <h3 id="post-client-detail">POST /clientes</h3>
 
 **REQUISIÇÃO**
+
 ```json
 {
   "nome": "Maria Oliveira",
@@ -115,7 +124,9 @@ docker-compose up --build
   "telefone": "1122334455"
 }
 ```
+
 **RESPOSTA**
+
 ```json
 {
   "id": 3,
@@ -124,9 +135,11 @@ docker-compose up --build
   "telefone": "1122334455"
 }
 ```
+
 <h3 id="post-order-detail">POST /pedidos</h3>
 
 **REQUISIÇÃO**
+
 ```json
 {
   "cliente_id": 1,
@@ -139,13 +152,16 @@ docker-compose up --build
   ]
 }
 ```
+
 **RESPOSTA**
+
 ```json
 {
   "id": 5,
   "status": "Em processamento",
-  "total": 200.00
+  "total": 200.0
 }
 ```
+
 <h2 id="colab">👥 Colaborador</h2>
 Eduardo Araujo - Desenvolvimento da API
